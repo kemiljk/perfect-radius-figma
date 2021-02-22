@@ -1,0 +1,61 @@
+<style>
+  button {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 100%;
+  }
+  div {
+    display: flex;
+    width: 100%;
+    padding-top: 0.25rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+<p
+  style="
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: smaller;
+    color: darkslategray;
+  "
+>
+  Find the perfect radius for your parent or child element.
+</p>
+<div>
+  <button
+    id="set-outer-radius"
+    style="
+      background-color: transparent;
+      margin-right: 0.5rem;
+      border-radius: 6px;
+      box-shadow: none;
+      outline: none;
+    "
+  >
+    Set outer radius
+  </button>
+  <button
+    id="set-inner-radius"
+    style="
+      background-color: transparent;
+      border-radius: 6px;
+      box-shadow: none;
+      outline: none;
+    "
+  >
+    Set inner radius
+  </button>
+</div>
+<script>
+  document.getElementById("set-outer-radius").onclick = () => {
+    parent.postMessage({ pluginMessage: { type: "set-outer-radius" } }, "*");
+  };
+
+  document.getElementById("set-inner-radius").onclick = () => {
+    parent.postMessage({ pluginMessage: { type: "set-inner-radius" } }, "*");
+  };
+</script>
