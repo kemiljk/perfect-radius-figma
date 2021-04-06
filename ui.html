@@ -13,42 +13,55 @@
     margin-left: auto;
     margin-right: auto;
   }
-</style>
-
-<p
-  style="
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-size: smaller;
     color: darkslategray;
-  "
->
-  Find the perfect radius for your parent or child element.
-</p>
+  }
+  .primary {
+    background-color: #17a0fb;
+    color: white;
+    height: 40px;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    transition: all 0.1s ease-in-out;
+  }
+  .secondary {
+    margin-right: 1rem;
+    background-color: white;
+    color: rgb(87, 87, 87);
+    height: 40px;
+    font-weight: 500;
+    border-radius: 8px;
+    box-shadow: none;
+    outline: none;
+    border: 1px solid darkgrey;
+    transition: all 0.1s ease-in-out;
+  }
+  .primary:active {
+    background-color: #0985d8;
+  }
+  .secondary:active {
+    background-color: lightgray;
+  }
+  .primary:hover {
+    background-color: #0985d8;
+    transition: all 0.1s ease-in-out;
+  }
+  .secondary:hover {
+    background-color: lightgray;
+    transition: all 0.1s ease-in-out;
+  }
+</style>
+
+<p>Find the perfect radius for your parent or child element.</p>
 <div>
-  <button
-    id="set-outer-radius"
-    style="
-      background-color: transparent;
-      margin-right: 0.5rem;
-      border-radius: 6px;
-      box-shadow: none;
-      outline: none;
-    "
-  >
-    Set outer radius
-  </button>
-  <button
-    id="set-inner-radius"
-    style="
-      background-color: transparent;
-      border-radius: 6px;
-      box-shadow: none;
-      outline: none;
-    "
-  >
-    Set inner radius
-  </button>
+  <button id="set-outer-radius" class="secondary">Set outer radius</button>
+  <button id="set-inner-radius" class="primary">Set inner radius</button>
 </div>
 <script>
   document.getElementById("set-outer-radius").onclick = () => {
