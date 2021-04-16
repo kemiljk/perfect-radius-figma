@@ -13,7 +13,8 @@
     margin-left: auto;
     margin-right: auto;
   }
-  p {
+  p,
+  span {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-size: smaller;
@@ -56,6 +57,27 @@
     background-color: lightgray;
     transition: all 0.1s ease-in-out;
   }
+  .mt-2 {
+    margin-top: 1rem;
+  }
+  .w-full {
+    width: 100%;
+  }
+  .slider {
+    -webkit-appearance: none;
+    background-color: #f4f4f6;
+    border: 1px solid #dcdce4;
+    border-radius: 50px;
+    outline: none;
+  }
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    cursor: pointer;
+    background: #17a0fb;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+  }
 </style>
 
 <p>Find the perfect radius for your parent or child element.</p>
@@ -63,6 +85,18 @@
   <button id="set-outer-radius" class="secondary">Set outer radius</button>
   <button id="set-inner-radius" class="primary">Set inner radius</button>
 </div>
+<div class="rangeslider">
+  <input
+    type="range"
+    min="0"
+    max="100"
+    value="0"
+    class="slider mt-2 w-full"
+    id="sliderRange"
+  />
+</div>
+<p>Outer radius: <span id="outer"></span></p>
+
 <script>
   document.getElementById("set-outer-radius").onclick = () => {
     parent.postMessage({ pluginMessage: { type: "set-outer-radius" } }, "*");
@@ -70,5 +104,21 @@
 
   document.getElementById("set-inner-radius").onclick = () => {
     parent.postMessage({ pluginMessage: { type: "set-inner-radius" } }, "*");
+  };
+
+  // onmessage = (event) => {
+  //   let currentOuterRadius = document.querySelector("#sliderRange").value;
+  //   currentOuterRadius = event.data.pluginMessage.outerRadius;
+  // };
+
+  let rangeslider = document.getElementById("sliderRange");
+  let outer = document.getElementById("outer");
+  rangeslider.oninput = function () {
+    let outerRadius = this.value;
+    outer.innerHTML = this.value;
+    parent.postMessage(
+      { pluginMessage: { type: "set-outer-radius-range", outerRadius } },
+      "*"
+    );
   };
 </script>
